@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f5f5f5;
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #3498db;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Employee List</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Employee ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Issue</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1001</td>
+                <td>Nishant Vekariya</td>
+                <td>Nishant@example.com</td>
+                <td>123-456-7890</td>
+                <td>Server Issue</td>
+            </tr>
+            <tr>
+                <td>1002</td>
+                <td>Rahul Patel</td>
+                <td>rahul@example.com</td>
+                <td>987-654-3210</td>
+                <td>Data Issue</td>
+            </tr>
+            <tr>
+                <td>1003</td>
+                <td>Kavya Rathod</td>
+                <td>kavya@example.com</td>
+                <td>987-654-3210</td>
+                <td>Unknown Issue</td>
+            </tr>
+        </tbody>
+    </table>
+
+</body>
+</html>

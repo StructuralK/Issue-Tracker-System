@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Issue</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f5f5f5;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        form {
+            margin-top: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            color: #555;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .button-secondary {
+            background-color: #ccc;
+        }
+
+        .button-secondary:hover {
+            background-color: #bbb;
+        }
+
+        .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #fff;
+            padding: 20px;
+            border: 1px solid #ccc;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            z-index: 999;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Create Issue</h2>
+        <button type="submit" onclick="window.location.href = 'dataList.html'">Check Issues</button>
+        <form onsubmit="return createIssue()">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" aria-required="true">
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" aria-required="true">
+
+            <label for="phone">Phone Number:</label>
+            <input type="tel" maxlength="10" id="phone" name="phone" aria-required="true">
+
+            <label for="issue">Issue:</label>
+            <select id="issue" name="issue" aria-required="true">
+                <option value="Server">Issue 1</option>
+                <option value="Data">Issue 2</option>
+                <option value="Unknown">Issue 3</option>
+            </select>
+    
+            <label for="screenshot">Upload Screenshot:</label>
+            <input type="file" id="screenshot">
+    
+            <button type="submit">Save</button>
+            
+        </form>
+    </div>
+
+    
+    
+    <div id="popup" class="popup">
+        <p>Issue saved successfully!</p>
+        <button onclick="hidePopup()">Close</button>
+    </div>
+
+<script>
+    function createIssue() {
+        const name = document.getElementById("name").value;
+        const email = document.getElementById("email").value;
+        const phone = document.getElementById("phone").value;
+        const userissue = document.getElementById("issue").value;
+
+        const screenshotInput = document.getElementById("screenshot");
+        const screenshotFile = screenshotInput.files[0];
+
+        if (!screenshotFile) {
+            alert("Please upload a screenshot.");
+            return false;
+        }
+
+        const reader = new FileReader();
+        reader.onloadend = function () {
+            const screenshot = reader.result;
+
+            const issue = {
+                name: name,
+                email: email,
+                phone: phone,
+                userissue: userissue,
+                screenshot: screenshot,
+                status: "Open"
+            };
+
+            let issues = JSON.parse(localStorage.getItem("issues")) || [];
+            issues.push(issue);
+            localStorage.setItem("issues", JSON.stringify(issues));
+
+            showPopup();
+            alert("Issue created successfully!");
+            window.location.href = 'user.html';
+        };
+
+        reader.readAsDataURL(screenshotFile);
+        return false; 
+    }
+    function showPopup() {
+        document.getElementById("popup").style.display = "block";
+    }
+
+    function hidePopup() {
+        document.getElementById("popup").style.display = "none";
+    }
+</script>
+
+</body>
+</html>
